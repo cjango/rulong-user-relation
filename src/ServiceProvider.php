@@ -20,6 +20,10 @@ class ServiceProvider extends LaravelServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__ . '/../config/user_relation.php' => config_path('user_relation.php')]);
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
+
+            $this->commands([
+                Commands\InitRelations::class,
+            ]);
         }
     }
 
