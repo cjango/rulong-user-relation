@@ -18,7 +18,7 @@ class CreateUserRelationsTable extends Migration
             $table->integer('parent_id')->unsigned()->index('parent_id');
             $table->text('bloodline');
             $table->integer('layer')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
     }
 

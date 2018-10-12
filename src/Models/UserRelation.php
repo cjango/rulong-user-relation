@@ -20,4 +20,9 @@ class UserRelation extends Model
     {
         return $this->hasManyThrough(config('user_relation.user_model'), UserRelation::class, 'parent_id', 'id', 'user_id', 'user_id');
     }
+
+    public function getBloodlineAttribute($value)
+    {
+        return $value ?: config('user_relation.default_parent_id') . ',';
+    }
 }

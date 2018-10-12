@@ -6,5 +6,13 @@
 
 return [
 
-    'user_model' => \App\User::class,
+    /**
+     * 用户模型
+     */
+    'user_model'        => \App\User::class,
+
+    /**
+     * 默认推荐人
+     */
+    'default_parent_id' => 0,
 ];

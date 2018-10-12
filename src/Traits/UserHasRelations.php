@@ -13,6 +13,18 @@ trait UserHasRelations
      */
     public $parent_id;
 
+    /**
+     * 这个方法，是为了给用户创建事件监听模型使用的
+     * 目的是去除attribute里面的parent_id参数，防止数据库写入错误
+     * @Author:<C.Jason>
+     * @Date:2018-06-25T15:04:29+0800
+     * @param [type] $value [description]
+     */
+    public function setParentIdAttribute($parentID)
+    {
+        $this->parent_id = $parentID;
+    }
+
     public function relation()
     {
         return $this->hasOne(UserRelation::class)->withDefault();
@@ -26,18 +38,6 @@ trait UserHasRelations
     public function children()
     {
         return $this->relation->children();
-    }
-
-    /**
-     * 这个方法，是为了给用户创建事件监听模型使用的
-     * 目的是去除attribute里面的parent_id参数，防止数据库写入错误
-     * @Author:<C.Jason>
-     * @Date:2018-06-25T15:04:29+0800
-     * @param [type] $value [description]
-     */
-    public function setParentIdAttribute($value)
-    {
-        $this->parent_id = $value;
     }
 
 }
