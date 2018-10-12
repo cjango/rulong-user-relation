@@ -13,7 +13,9 @@
 
 调整User模型
 增加属性
+~~~
 public $guarded = [];
+~~~
 
 创建用户时，传入 parent_id 属性即可
 ~~~
