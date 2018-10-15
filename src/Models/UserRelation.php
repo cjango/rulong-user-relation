@@ -11,6 +11,8 @@ class UserRelation extends Model
 
     protected $guarded = [];
 
+    protected $primaryKey = 'user_id';
+
     public function parent()
     {
         return $this->belongsTo(config('user_relation.user_model'), 'parent_id');
