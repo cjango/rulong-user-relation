@@ -24,7 +24,6 @@ class User extends Authenticatable
 ~~~
 
 创建用户时，传入 parent_id 属性即可
-
 ~~~
 User::create([
     'username'  => $username,
