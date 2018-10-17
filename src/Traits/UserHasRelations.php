@@ -2,6 +2,7 @@
 
 namespace RuLong\UserRelation\Traits;
 
+use RuLong\UserRelation\Exceptions\ParentUserException;
 use RuLong\UserRelation\Models\UserRelation;
 
 trait UserHasRelations
@@ -25,19 +26,64 @@ trait UserHasRelations
         $this->parent_id = $parentID;
     }
 
+    /**
+     * 用户关联关系
+     * @Author:<C.Jason>
+     * @Date:2018-10-17T15:14:57+0800
+     * @return [type] [description]
+     */
     public function relation()
     {
         return $this->hasOne(UserRelation::class)->withDefault();
     }
 
+    /**
+     * 上级用户
+     * @Author:<C.Jason>
+     * @Date:2018-10-17T15:15:09+0800
+     * @return [type] [description]
+     */
     public function parent()
     {
         return $this->relation->parent();
     }
 
+    /**
+     * 按照血缘线，返回所有上级用户
+     * @Author:<C.Jason>
+     * @Date:2018-10-17T15:15:44+0800
+     * @return [type] [description]
+     */
+    public function parents()
+    {
+        #todo...
+    }
+
+    /**
+     * 所有下级用户
+     * @Author:<C.Jason>
+     * @Date:2018-10-17T15:15:19+0800
+     * @return [type] [description]
+     */
     public function children()
     {
         return $this->relation->children();
     }
 
+    /**
+     * 修改上级用户
+     * @Author:<C.Jason>
+     * @Date:2018-10-17T15:16:27+0800
+     * @return [type] [description]
+     */
+    public function changeParentUser($parentUser)
+    {
+        $userModel = config('user_relation.user_model');
+
+        if (!($parentUser instanceof $userModel)) {
+            throw new ParentUserException('上级用户必须是一个用户模型');
+        }
+
+        #todo...
+    }
 }
