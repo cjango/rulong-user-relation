@@ -38,4 +38,9 @@ class UserCreated
         }
     }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
 }
